@@ -1,38 +1,266 @@
-.App {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes mover {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(213px);
+  }
+}
+
+@keyframes mover-2 {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(245px);
+  }
+}
+
+@keyframes mover-3 {
+  from {
+    transform: translateY(173px); /* 173 */
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes mover-4 {
+  from {
+    transform: translateY(200px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes img {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(50px);
+  }
+}
+
+.ball {
+  /* border: 2px solid #fff; */
+  z-index: 0;
+  -webkit-animation: mover 3s infinite alternate ease;
+  animation: mover 4s infinite alternate ease;
+}
+
+.ball-2 {
+  /* border: 2px solid #fff; */
+  z-index: 0;
+  -webkit-animation: mover-2 3s infinite alternate ease;
+  animation: mover-2 4s infinite alternate ease;
+}
+
+
+.ball-3 {
+  /* border: 2px solid #fff; */
+  z-index: 0;
+  -webkit-animation: mover-3 3s infinite alternate ease;
+  animation: mover-3 4s infinite alternate ease;
+}
+
+.ball-4 {
+  /* border: 2px solid #fff; */
+  z-index: 0;
+  -webkit-animation: mover-4 3s infinite alternate ease;
+  animation: mover-4 4s infinite alternate ease;
+}
+
+.img {
+  /* border: 2px solid #fff; */
+  z-index: 0;
+  -webkit-animation: img 3s infinite alternate ease;
+  animation: img 3s infinite alternate ease;
+}
+
+.tapka {
+  background-image: url(../src/img/bg-tapka.png);
+  object-fit: cover;
+  background-position: end;
+  /* background-repeat: no-repeat; */
+}
+
+.hat {
+  font-family: "conthrax";
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.num {
+  color: #0000;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #969696;
+  margin-bottom: -1.5rem;
+  font-size: 6rem;
+  font-weight: 600;
+  line-height: 100%;
+}
+
+.first-layer {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform: perspective(1000px);
+  transform: perspective(1000px);
+}
+
+.l-t-1 {
+  text-shadow: 0 4px 18px #41c6ff;
+}
+
+.l-t-2 {
+  text-shadow: 0 4px 18px #cd63ff;
+}
+
+.l-t-3 {
+  text-shadow: 0 4px 18px #56ffeb;
+}
+
+.l-t-4 {
+  text-shadow: 0 4px 18px #ff8aed;
+}
+
+.flash-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(90deg, #2166b0, #2fc5f3, #2166b0);
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  /* animation: flash 2s infinite linear; */
+}
+
+@keyframes flash {
+  0% {
+    background-position: 100%;
+  }
+
+  100% {
+    background-position: -100%;
+  }
+}
+
+
+
+.flash-button {
+  position: relative;
+  background: linear-gradient(265.05deg, #ffcb52 -6.15%, #ff7b02 106.32%);
+    ;
+  /* Default button color */
+  z-index: 1;
+}
+
+.flash-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  /* Start from the left, outside of the button */
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      hsla(0, 0%, 100%, 0.13),
+      hsla(0, 0%, 100%, 0.13) 77%,
+      hsla(0, 0%, 100%, 0.5) 92%,
+      hsla(0, 0%, 100%, 0));
+  transition: all 0.7s ease;
+  z-index: -1;
+}
+
+.flash-button:hover::before {
+  left: 100%;
+
+}
+
+.animated-section {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.animated-section:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 20px rgba(25, 193, 242, 0.3);
+}
+
+
+/* Base style for the element */
+.wave-effect {
+  position: relative;
+  overflow: hidden;
+  background-color: #007bff;
+  /* Base color */
+  color: white;
+  padding: 20px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Create the wave pseudo-element */
+.wave-background {
+  position: relative;
+  overflow: hidden;
+  background-color: #007bff;
+  color: white;
+  padding: 20px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+/* Create the wave animation */
+.wave-background::before,
+.wave-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 20%, transparent 60%);
+  border-radius: 45%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0.5;
+  animation: wave 6s ease-in-out infinite;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Make the second wave move at a different speed for a layered effect */
+.wave-background::after {
+  animation-duration: 8s;
+  opacity: 0.4;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Keyframe animation for wave motion */
+@keyframes wave {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.og-color{
+  background-color: linear-gradient(264.28deg, #19c1f2 -38.2%, #2166b0 103.12%);
+  background-clip: text;
 }
